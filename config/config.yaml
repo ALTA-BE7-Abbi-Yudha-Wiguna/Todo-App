@@ -1,0 +1,8 @@
+Port: 8080
+Database:
+  Port: 3306
+  Driver: "mysql"
+  Name: "todo"
+  Address: "database-be7.c5mcub6x2b1y.ap-southeast-1.rds.amazonaws.com"
+  Username: "admin"
+  Password: "admin123"
