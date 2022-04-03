@@ -2,9 +2,14 @@ package routes
 
 import (
 	"github.com/labstack/echo/v4"
+	"todoListApp/delivery/handler/auth"
 	"todoListApp/delivery/handler/user"
 	"todoListApp/delivery/middlewares"
 )
+
+func RegisterAuthPath(e *echo.Echo, ah *auth.AuthHandler) {
+	e.POST("/auth", ah.LoginHandler())
+}
 
 func RegisterPath(e *echo.Echo, uh *user.UserHandler) {
 
