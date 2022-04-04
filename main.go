@@ -21,6 +21,10 @@ import (
 	todohandler "todoListApp/delivery/handler/todo"
 	todorepo "todoListApp/repository/todo"
 	todousecase "todoListApp/usecase/todo"
+
+	projecthandler "todoListApp/delivery/handler/project"
+	projectrepo "todoListApp/repository/project"
+	projectusecase "todoListApp/usecase/project"
 )
 
 func main() {
@@ -39,12 +43,16 @@ func main() {
 	todoUse := todousecase.NewTodoUseCase(todoRepo)
 	todoHandler := todohandler.NewTodoHandler(todoUse)
 
+	projectRepo := projectrepo.NewProjectRepository(db)
+	projectUsecase := projectusecase.NewProjectUseCase(projectRepo)
+	projectHandler := projecthandler.NewProjectHandler(projectUsecase)
+
 	e := echo.New()
 	e.Pre(middleware.RemoveTrailingSlash())
 	e.Use(middlewares.CustomLogger())
 
 	routes.RegisterAuthPath(e, authHandler)
-	routes.RegisterPath(e, userHandler, todoHandler)
+	routes.RegisterPath(e, userHandler, todoHandler, projectHandler)
 	log.Fatal(e.Start(fmt.Sprintf(":%v", configs.Port)))
 
 }
