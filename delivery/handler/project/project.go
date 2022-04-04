@@ -38,7 +38,7 @@ func (ph *ProjectHandler) CreateProject() echo.HandlerFunc {
 		var project entities.Project
 		c.Bind(&project)
 		id := middlewares.ExtractToken(c)
-		project.TodoID = uint(id)
+		project.UserID = uint(id)
 		err := ph.projectUseCase.CreateProject(project)
 		if err != nil {
 			return c.JSON(http.StatusInternalServerError, helper.ResponseFailed("failed to create prject"))
