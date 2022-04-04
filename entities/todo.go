@@ -7,6 +7,5 @@ type Todo struct {
 	Todo      string `json:"todo" form:"todo"`
 	Status    string `json:"status" form:"status" gorm:"default:not completed"`
 	UserID    uint
-	ProjectID uint
-	Projects  []Project
+	ProjectID uint `json:"projectID"`
 }
